@@ -1,0 +1,14 @@
+.heading{
+    color: $color-dark;
+    font-size: 1.2rem;
+    padding: 1rem;
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+    @media (min-width: 769px){
+        font-size: 1.3rem;
+        display: inline-block;
+        margin-right: auto;
+        font-weight: 500;
+        padding: .5rem;
+    }
+}

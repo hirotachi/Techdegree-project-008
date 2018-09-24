@@ -1,0 +1,19 @@
+#search{
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    border: 1px solid $color-grey;
+    &::placeholder{
+        color: $color-grey;
+    }
+    &:focus{
+        outline: none;
+    }
+
+    @media (min-width: 769px){
+        display: inline-block;
+        width: 300px;
+        padding: .5rem;
+    }
+}

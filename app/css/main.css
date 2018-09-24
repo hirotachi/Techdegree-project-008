@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+ul {
+  list-style: none; }
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #fcfcfc; }
+
+#search {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  border: 1px solid #acafb3; }
+  #search::placeholder {
+    color: #acafb3; }
+  #search:focus {
+    outline: none; }
+  @media (min-width: 769px) {
+    #search {
+      display: inline-block;
+      width: 300px;
+      padding: .5rem; } }
+
+.employee {
+  border: 1px solid #acafb3;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem 0;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-around;
+  align-items: center; }
+  @media (min-width: 769px) {
+    .employee {
+      padding: 1.5rem 1rem;
+      margin: 0; } }
+  .employee_img {
+    display: inline-block;
+    border-radius: 50%;
+    width: 25%;
+    height: 25%; }
+    @media (min-width: 769px) {
+      .employee_img {
+        width: 30%;
+        margin-right: auto; } }
+  .employee_info {
+    display: inline-block;
+    text-align: left;
+    width: 70%;
+    color: #acafb3;
+    font-size: .9rem; }
+    @media (min-width: 769px) {
+      .employee_info {
+        margin-left: 1rem; } }
+    @media (orientation: landscape) and (min-width: 480px) and (max-width: 769px) {
+      .employee_info {
+        font-size: .8rem; } }
+    .employee_info-name {
+      font-size: 1.1rem;
+      color: #565d63;
+      font-weight: bold;
+      text-transform: capitalize; }
+    .employee_info-city {
+      text-transform: capitalize; }
+    .employee_info p {
+      margin: .4rem 0; }
+
+.heading {
+  color: #565d63;
+  font-size: 1.2rem;
+  padding: 1rem;
+  letter-spacing: .1rem;
+  text-transform: uppercase; }
+  @media (min-width: 769px) {
+    .heading {
+      font-size: 1.3rem;
+      display: inline-block;
+      margin-right: auto;
+      font-weight: 500;
+      padding: .5rem; } }
+
+.grid {
+  width: 100%;
+  margin: 2rem 0; }
+  @media (min-width: 769px) {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 1rem;
+      justify-content: centerl; } }
+  @media (orientation: landscape) and (min-width: 480px) and (max-width: 769px), (min-width: 480px) and (max-width: 769px) {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 1rem; } }
+
+.wrapper {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem; }
+  @media (min-width: 769px) {
+    .wrapper {
+      margin: 3rem auto;
+      max-width: 1120px; } }
