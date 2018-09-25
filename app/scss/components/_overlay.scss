@@ -1,94 +1,95 @@
 .overlay{
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100%;
-    background: rgba($color: #000000, $alpha: 0.5);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background: rgba($color: #000000, $alpha: 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 
-    .employee{
-        display: block;
-        margin: 0 2rem;
-        margin-top: 7rem;
-        position: relative;
-        animation: pop .5s ease-in-out;
-        cursor: default;
-        background-color: $color-white;
-        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-        &:hover{
-            box-shadow: none;
-        }
-        @media (min-width: 769px){
-            width: fit-content;
-            margin: 8rem auto;
-        }
-        @media (orientation: landscape) and (min-width: 480px) and(max-width: 769px){
-            width: fit-content;
-            margin: auto;
-            align-content: center;
-        }
-
-        &_img{
-            display: inline-block;
-            margin: 0 1rem;
-           @extend %landscape;
-        }
-
-        &_info{
-            text-align: center;
-            display: inline-block;
-            @media (orientation: landscape) and (min-width: 480px) and(max-width: 769px){
-                width: fit-content;
-                padding: 0 1rem;
-                margin-bottom: 1rem;
-                vertical-align: text-bottom;
-            }
-            @media (min-width: 769px){
-                font-size: 1rem;
-            }
-        }
-        
-        .more_info{
-            border-top: 1px solid $color-grey;
-            padding: 2rem;
-            color: $color-grey;
-            @media (orientation: landscape) and (min-width: 480px) and(max-width: 769px){
-                width: fit-content;
-                padding: 5px 7rem;
-            }
-            div{
-                @media (min-width: 769px){
-                    font-size: 1rem;
-                    margin: 1rem 0;
-                }
-            }
-        }
-
-        
-        .fa{
-            &-times{
-                position: absolute;
-                top: 1rem;
-                right: 1rem;
-                cursor: pointer;
-            }
-            &-angle{
-                &-right{
-                    @extend %arrow;
-                    right: 1rem;
-                }
-                &-left{
-                    @extend %arrow;
-                    left: 1rem;
-                }
-            }
-        }
-
-
+  .employee{
+    display: block;
+    margin: 0 2rem;
+    margin-top: 7rem;
+    position: relative;
+    animation: pop .5s ease-in-out;
+    cursor: default;
+    background-color: $color-white;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    &:hover{
+      box-shadow: none;
     }
+    @media (min-width: 769px){
+      width: fit-content;
+      margin: 8rem auto;
+    }
+    @media (orientation: landscape) and (min-width: 480px) and(max-width: 769px){
+      width: fit-content;
+      margin: auto;
+      align-content: center;
+    }
+
+    &_img{
+      display: inline-block;
+      margin: 0 1rem;
+      @extend %landscape;
+    }
+
+    &_info{
+      text-align: center;
+      display: inline-block;
+      @media (orientation: landscape) and (min-width: 480px) and(max-width: 769px){
+        width: fit-content;
+        padding: 0 1rem;
+        margin-bottom: 1rem;
+        vertical-align: text-bottom;
+      }
+      @media (min-width: 769px){
+        font-size: 1rem;
+      }
+    }
+
+    .more_info{
+      border-top: 1px solid $color-grey;
+      padding: 2rem;
+      color: $color-grey;
+      @media (orientation: landscape) and (min-width: 480px) and(max-width: 769px){
+        width: fit-content;
+        padding: 5px 7rem;
+      }
+      div{
+        @media (min-width: 769px){
+          font-size: 1rem;
+          margin: 1rem 0;
+        }
+      }
+    }
+
+
+    .fa{
+      &-times{
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        cursor: pointer;
+        display: block;
+      }
+      &-angle{
+        &-right{
+          @extend %arrow;
+          right: 1rem;
+        }
+        &-left{
+          @extend %arrow;
+          left: 1rem;
+        }
+      }
+    }
+
+
+  }
 
 }
 

@@ -89,8 +89,8 @@ $(document).ready(function () {
         $(".more_info").hide();
     }
 
+    //reverse date format
     function createBirthDay(data){
-        // data.slice(0, 11)
         const date = data.slice(2, 10);
         return date.split('-').reverse().join('/');
     }
@@ -105,7 +105,7 @@ $(document).ready(function () {
 // create overlay on employee click
     function createOverlay() {
         const li = $(this).clone();
-        const overlay = document.createElement("div");
+        const overlay = document.createElement("ul");
         $(overlay).addClass("overlay");
         $(overlay).append(li);
         $(overlay).insertAfter(".grid");

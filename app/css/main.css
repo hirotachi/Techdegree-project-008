@@ -151,7 +151,8 @@ body {
       position: absolute;
       top: 1rem;
       right: 1rem;
-      cursor: pointer; }
+      cursor: pointer;
+      display: block; }
     .overlay .employee .fa-angle-right {
       right: 1rem; }
     .overlay .employee .fa-angle-left {
