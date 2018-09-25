@@ -6,7 +6,7 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 1rem;
-        justify-content: centerl;
+        justify-content: center;
     }
     @media (orientation: landscape) and (min-width: 480px) and (max-width: 769px),
             (min-width: 480px) and (max-width: 769px){

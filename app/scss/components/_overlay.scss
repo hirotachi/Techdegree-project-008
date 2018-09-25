@@ -7,21 +7,80 @@
     background: rgba($color: #000000, $alpha: 0.5);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+
     .employee{
-        flex-direction: column;
-        background-color: white;
-        margin: 0 1rem;
-        animation: pop .6s ease-out;
+        display: block;
+        margin: 0 2rem;
+        margin-top: 7rem;
         position: relative;
+        animation: pop .5s ease-in-out;
+        cursor: default;
+        background-color: $color-white;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        &:hover{
+            box-shadow: none;
+        }
+        @media (min-width: 769px){
+            width: fit-content;
+            margin: 8rem auto;
+        }
+        @media (orientation: landscape) and (min-width: 480px) and(max-width: 769px){
+            width: fit-content;
+            margin: auto;
+            align-content: center;
+        }
+
+        &_img{
+            display: inline-block;
+            margin: 0 1rem;
+           @extend %landscape;
+        }
+
+        &_info{
+            text-align: center;
+            display: inline-block;
+            @media (orientation: landscape) and (min-width: 480px) and(max-width: 769px){
+                width: fit-content;
+                padding: 0 1rem;
+                margin-bottom: 1rem;
+                vertical-align: text-bottom;
+            }
+        }
+        
+        .more_info{
+            border-top: 1px solid $color-grey;
+            padding: 2rem;
+            color: $color-grey;
+            @media (orientation: landscape) and (min-width: 480px) and(max-width: 769px){
+                width: fit-content;
+                padding: 5px 7rem;
+            }
+        }
+
+        
+        .fa{
+            &-times{
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                cursor: pointer;
+            }
+            &-angle{
+                &-right{
+                    @extend %arrow;
+                    right: 1rem;
+                }
+                &-left{
+                    @extend %arrow;
+                    left: 1rem;
+                }
+            }
+        }
+
+
     }
 
-    .fas{
-        position: absolute;
-        top: 1rem;
-        right: 1.5rem;
-        cursor: pointer;
-    }
 }
 
 // add animation popping
