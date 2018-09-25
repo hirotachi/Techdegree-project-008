@@ -60,18 +60,18 @@ $(document).ready(function () {
     // fetch data from api
     function fetchData(url){
         fetch("https://randomuser.me/api/?results=12&nat=us")
-        .then(res => res.json())
-        .then(data => createCards(data.results))
+            .then(res => res.json())
+            .then(data => createCards(data.results))
     }
-    
-fetchData();
+
+    fetchData();
 
 // helpers function==================================
 
 // creates employee from data passed
-function createEmployee(data){
-    const li = 
-    `<li class="employee">
+    function createEmployee(data){
+        const li =
+            `<li class="employee">
         <img class="employee_img" src="${data.picture.large}" alt="employee picture">
         <div class="employee_info">
             <p class="employee_info-name">${data.name.first} ${data.name.last}</p>
@@ -85,101 +85,81 @@ function createEmployee(data){
         </div>
     </li>`
 
-    $(".grid").append(li);
-    $(".more_info").hide();
-}
+        $(".grid").append(li);
+        $(".more_info").hide();
+    }
 
 // creates card depending on the length of the request
-function createCards(data){
-    $(data).each(function() {
-        createEmployee(this);
-    });
-}
+    function createCards(data){
+        $(data).each(function() {
+            createEmployee(this);
+        });
+    }
 
 
 // create overlay on employee click
-function createOverlay(){
-    const li = $(this).clone();
-    $(li).append("<i class='fas fa-times'></i>");
-    $(li).append("<i class='fas fa-angle-right'></i>");
-    $(li).append("<i class='fas fa-angle-left'></i>");
-    const overlay = document.createElement("div");
-    $(overlay).addClass("overlay");
-    $(overlay).append(li);
-    $(overlay).insertAfter(".grid");
-    $(".overlay li .more_info").show();
-}
+    function createOverlay(){
+        const li = $(this).clone();
+        const overlay = document.createElement("div");
+        $(overlay).addClass("overlay");
+        $(overlay).append(li);
+        $(overlay).insertAfter(".grid");
+        showMore(li);
+    }
+
+    //add close and arrow icons and show more info
+    function showMore(li){
+        $(li).append("<i class='fas fa-times'></i>");
+        $(li).append("<i class='fas fa-angle-right arrow'></i>");
+        $(li).append("<i class='fas fa-angle-left arrow'></i>");
+        $(".overlay li .more_info").show();
+    }
 
 // state abbreaviator
-function abbreaviator(state){
-    for (let i = 0; i < states.length; i++){
-        if(states[i][0].toLowerCase() === state){
-            return states[i][1];
+    function abbreaviator(state){
+        for (let i = 0; i < states.length; i++){
+            if(states[i][0].toLowerCase() === state){
+                return states[i][1];
+            };
         };
     };
-};
 
 // remove overlay
-function removeOver(){
-    $(".overlay").fadeOut();
-    setTimeout(() => $(".overlay").remove(), 500);
-}
+    function removeOver(){
+        $(".overlay").fadeOut();
+        setTimeout(() => $(".overlay").remove(), 500);
+    }
 
-// get the next overlay of employee
-function next(e){
-    const target = e.target;
-    const direction = $(target).hasClass("fa-angle-right");
-    let li = $(target).parent();
-    const text = $(li).children()[0];
-    let src = $(text).attr("src");
-
-    $(".grid .employee").each(function(){
-        if(direction && $(this).children()[0].src === src){
-            if($(this).next().length === 1){
-                $(li).html($(this).next().html());
-                $(li).append("<i class='fas fa-times'></i>");
-                $(li).append("<i class='fas fa-angle-right'></i>");
-                $(li).append("<i class='fas fa-angle-left'></i>");
-                $(".overlay li .more_info").show();
+    function navigate(){
+        let arrow = this;
+        let direction = $(arrow).hasClass("fa-angle-right");
+        const li =  $(this).parent();
+        const name = $(arrow).siblings().eq(1).find("p").eq(0).text();
+        $(".grid .employee").each(function(){
+            const employee = $(this).find("p").eq(0).text();
+            if(name === employee){
+                if(direction){
+                    $(li).html($(this).next().html());
+                }else{
+                    $(li).html($(this).prev().html());
+                }
+                showMore(li);
             }
-        }
-    });
-}
-
-// get previous employee and put on overlay
-function prev(e){
-    const target = e.target;
-    const direction = $(target).hasClass("fa-angle-left");
-    let li = $(target).parent();
-    const text = $(li).children()[0];
-    let src = $(text).attr("src");
-
-    $(".grid .employee").each(function(){
-        if(direction && $(this).children()[0].src === src){
-            if($(this).prev().length === 1){
-                $(li).html($(this).prev().html());
-                $(li).append("<i class='fas fa-times'></i>");
-                $(li).append("<i class='fas fa-angle-right'></i>");
-                $(li).append("<i class='fas fa-angle-left'></i>");
-                $(".overlay li .more_info").show();
-            }
-            
-        }
-    });
-}
+        });
+    }
 
 
 // event handlers==========================================
 
-$(".grid").on("click","li", createOverlay);
+    $(".grid").on("click","li", createOverlay);
 
 // on employee overlay click close the overlay
-$(".wrapper").on("click",".fa-times", removeOver);
+    $(".wrapper").on("click",".fa-times", removeOver);
 
 // next employee show and remove the current one from overlay
-$(".wrapper").on("click", ".overlay", next);
-$(".wrapper").on("click", ".overlay", prev);
+//     $(".wrapper").on("click", ".overlay", next);
+//     $(".wrapper").on("click", ".overlay", prev);
+
+    $(".wrapper").on("click", ".arrow", navigate);
 
 });//document finish load
-
-
