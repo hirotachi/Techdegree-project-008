@@ -46,6 +46,9 @@
                 margin-bottom: 1rem;
                 vertical-align: text-bottom;
             }
+            @media (min-width: 769px){
+                font-size: 1rem;
+            }
         }
         
         .more_info{
@@ -55,6 +58,12 @@
             @media (orientation: landscape) and (min-width: 480px) and(max-width: 769px){
                 width: fit-content;
                 padding: 5px 7rem;
+            }
+            div{
+                @media (min-width: 769px){
+                    font-size: 1rem;
+                    margin: 1rem 0;
+                }
             }
         }
 

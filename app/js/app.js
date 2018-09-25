@@ -58,18 +58,18 @@ $(document).ready(function () {
 
 // fetching===============================================
     // fetch data from api
-    function fetchData(url){
-        fetch("https://randomuser.me/api/?results=12&nat=us")
+    function fetchData(url) {
+        fetch(url)
             .then(res => res.json())
             .then(data => createCards(data.results))
     }
 
-    fetchData();
+    fetchData("https://randomuser.me/api/?results=12&nat=us");
 
 // helpers function==================================
 
 // creates employee from data passed
-    function createEmployee(data){
+    function createEmployee(data) {
         const li =
             `<li class="employee">
         <img class="employee_img" src="${data.picture.large}" alt="employee picture">
@@ -81,7 +81,7 @@ $(document).ready(function () {
         <div class="more_info">
             <div class="phone">${data.phone}</div>
             <div class="address">${data.location.street}, ${abbreaviator(data.location.state)} ${data.location.postcode}</div>
-            <div class="birthday">Birthday: 01/04/85</div>
+            <div class="birthday">Birthday: ${createBirthDay(data.dob.date)}</div>
         </div>
     </li>`
 
@@ -89,16 +89,21 @@ $(document).ready(function () {
         $(".more_info").hide();
     }
 
+    function createBirthDay(data){
+        // data.slice(0, 11)
+        const date = data.slice(2, 10);
+        return date.split('-').reverse().join('/');
+    }
 // creates card depending on the length of the request
-    function createCards(data){
-        $(data).each(function() {
+    function createCards(data) {
+        $(data).each(function () {
             createEmployee(this);
         });
     }
 
 
 // create overlay on employee click
-    function createOverlay(){
+    function createOverlay() {
         const li = $(this).clone();
         const overlay = document.createElement("div");
         $(overlay).addClass("overlay");
@@ -108,7 +113,7 @@ $(document).ready(function () {
     }
 
     //add close and arrow icons and show more info
-    function showMore(li){
+    function showMore(li) {
         $(li).append("<i class='fas fa-times'></i>");
         $(li).append("<i class='fas fa-angle-right arrow'></i>");
         $(li).append("<i class='fas fa-angle-left arrow'></i>");
@@ -116,31 +121,36 @@ $(document).ready(function () {
     }
 
 // state abbreaviator
-    function abbreaviator(state){
-        for (let i = 0; i < states.length; i++){
-            if(states[i][0].toLowerCase() === state){
+    function abbreaviator(state) {
+        for (let i = 0; i < states.length; i++) {
+            if (states[i][0].toLowerCase() === state) {
                 return states[i][1];
-            };
-        };
+            }
+            ;
+        }
+        ;
     };
 
 // remove overlay
-    function removeOver(){
-        $(".overlay").fadeOut();
-        setTimeout(() => $(".overlay").remove(), 500);
+    function removeOver(e) {
+            if($(e.target).hasClass("fa-times") || $(e.target).hasClass("overlay")) {
+                $(".overlay").fadeOut();
+                setTimeout(() => $(".overlay").remove(), 500);
+            }
     }
 
-    function navigate(){
+    //overlay naviagtion for employees
+    function navigate() {
         let arrow = this;
         let direction = $(arrow).hasClass("fa-angle-right");
-        const li =  $(this).parent();
+        const li = $(this).parent();
         const name = $(arrow).siblings().eq(1).find("p").eq(0).text();
-        $(".grid .employee").each(function(){
+        $(".grid .employee").each(function () {
             const employee = $(this).find("p").eq(0).text();
-            if(name === employee){
-                if(direction){
+            if (name === employee) {
+                if (direction) {
                     $(li).html($(this).next().html());
-                }else{
+                } else {
                     $(li).html($(this).prev().html());
                 }
                 showMore(li);
@@ -148,18 +158,31 @@ $(document).ready(function () {
         });
     }
 
+    //search for employees
+    function search() {
+        const search = $(this).val().replace(/[^A-Za-z]/g, '').toLowerCase();
+        $(".grid .employee").each(function () {
+            const employee = $(this).find("p").eq(0).text().replace(/[^A-Za-z]/g, '');
+            if (employee.indexOf(search) !== -1) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    };
+
 
 // event handlers==========================================
 
-    $(".grid").on("click","li", createOverlay);
+    $(".grid").on("click", "li", createOverlay);
 
 // on employee overlay click close the overlay
-    $(".wrapper").on("click",".fa-times", removeOver);
+    $(".wrapper").on("click", ".overlay", removeOver);
 
-// next employee show and remove the current one from overlay
-//     $(".wrapper").on("click", ".overlay", next);
-//     $(".wrapper").on("click", ".overlay", prev);
-
+// navigate through the employees overlay with arrows
     $(".wrapper").on("click", ".arrow", navigate);
+
+//    search for employees by input
+    $("#search").on("keyup", search);
 
 });//document finish load

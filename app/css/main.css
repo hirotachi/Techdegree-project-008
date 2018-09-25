@@ -10,8 +10,7 @@
   top: 5rem;
   font-size: 2rem;
   cursor: pointer;
-  width: 20%;
-  height: 40%; }
+  display: block; }
 
 @media (orientation: landscape) and (min-width: 480px) and (max-width: 769px) {
   .overlay .employee_img {
@@ -133,6 +132,9 @@ body {
           padding: 0 1rem;
           margin-bottom: 1rem;
           vertical-align: text-bottom; } }
+      @media (min-width: 769px) {
+        .overlay .employee_info {
+          font-size: 1rem; } }
     .overlay .employee .more_info {
       border-top: 1px solid #acafb3;
       padding: 2rem;
@@ -141,6 +143,10 @@ body {
         .overlay .employee .more_info {
           width: fit-content;
           padding: 5px 7rem; } }
+      @media (min-width: 769px) {
+        .overlay .employee .more_info div {
+          font-size: 1rem;
+          margin: 1rem 0; } }
     .overlay .employee .fa-times {
       position: absolute;
       top: 1rem;

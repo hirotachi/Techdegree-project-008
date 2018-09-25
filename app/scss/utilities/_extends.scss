@@ -1,14 +1,13 @@
 %arrow{
-    position: absolute;
-    top: 5rem;
-    font-size: 2rem;
-    cursor: pointer;
-    width: 20%;
-    height: 40%;
+  position: absolute;
+  top: 5rem;
+  font-size: 2rem;
+  cursor: pointer;
+  display: block;
 }
 
 %landscape{
-    @media (orientation: landscape) and (min-width: 480px) and(max-width: 769px){
-        display: block;
-    }
+  @media (orientation: landscape) and (min-width: 480px) and(max-width: 769px){
+    display: block;
+  }
 }
